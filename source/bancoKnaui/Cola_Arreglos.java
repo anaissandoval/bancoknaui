@@ -29,7 +29,6 @@ public class Cola_Arreglos<E> extends AbstractCola<E> {
 	// Métodos
 	// --------------------------------------------------
 
-	@Override
 	public E dequeue() {
 		if( isEmpty() ) return null;
 		else{
@@ -42,7 +41,6 @@ public class Cola_Arreglos<E> extends AbstractCola<E> {
 		}
 	}
 
-	@Override
 	public void enqueue(E elemento) {
 		Object[] nuevos = new Object[ size() + 1 ];
 		for( int i = 0; i < size(); i++ )
@@ -51,14 +49,12 @@ public class Cola_Arreglos<E> extends AbstractCola<E> {
 		elementos = nuevos;
 	}
 
-	@Override
 	public E peek() {
 		if( isEmpty() ) return null;
 		else
 			return (E) elementos[0];
 	}
 
-	@Override
 	public int size() {
 		return elementos.length;
 	}

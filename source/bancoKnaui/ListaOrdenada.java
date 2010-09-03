@@ -23,7 +23,7 @@ public class ListaOrdenada<E extends Comparable<E>> extends ArrayList<E>{
 
 		for( out = size()-1; out > 1; out-- ) // outer loop (backward)
 		for( in = 0; in < out; in++ ) // inner loop (forward)
-		if( get(in).compareTo(get( in+1 )) == -1 ) // out of order?
+		if( get(in).compareTo(get( in+1 )) == 1 ) // out of order?
 			swap(in, in+1); // swap them
 	}
 

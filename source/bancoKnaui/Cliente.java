@@ -20,9 +20,7 @@ public class Cliente implements Comparable<Cliente>{
 	 * No debe ser mayor a 30 */
 	private int tiempoPermanencia;
 	
-	/**
-	 * Hora a la que atienden al cliente en el banco.
-	 */
+	/** Hora a la que atienden al cliente en el banco. */
 	private int horaAtendido;
 	
 	// --------------------------------------------------
@@ -57,7 +55,7 @@ public class Cliente implements Comparable<Cliente>{
 	}
 	
 	/**
-	 * M√©todo que retorna el tiempo que el cliente permanecer√° en el banco
+	 * M√©todo que retorna el tiempo que el cliente tomar· en realizar su mandado
 	 * @return El tiempo que al cliente le toma hacer su mandado (en minutos).
 	 */
 	public int darTiempoPermanencia(){
@@ -89,10 +87,14 @@ public class Cliente implements Comparable<Cliente>{
 		return horaAtendido + tiempoPermanencia;
 	}
 	
-	@Override
 	public int compareTo(Cliente otro) {
 		if( horaEntrada < otro.horaEntrada ) return -1;
 		else if( horaEntrada == otro.horaEntrada ) return 0;
 		else return 1;
+	}
+	
+	public String toString()
+	{
+		return "\n\tHora de entrada: " + horaEntrada + "\n\tDuraciÛn de transacciÛn: " + tiempoPermanencia;
 	}
 }
