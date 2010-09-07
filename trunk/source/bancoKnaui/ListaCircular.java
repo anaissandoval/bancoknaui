@@ -107,6 +107,9 @@ public class ListaCircular<E> {
 	 * Método que retorna el primer elemento de la lista
 	 */
 	public E darPrimero(){
-		return primero.darObjeto();
+		if( primero != null )
+			return primero.darObjeto();
+		else
+			return null;
 	}
 }
