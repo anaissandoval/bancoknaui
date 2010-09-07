@@ -47,7 +47,7 @@ public class BancoKnaui {
 		
 		Scanner scan = new Scanner( System.in );
 		System.out.print( "Presione '1' para realizar la simulación con la implementación de cola que utiliza arreglos.\n" +
-				"Presiones '2' para realizar la simulación con la implementación de cola que utiliza listas circulares" );
+				"Presione '2' para realizar la simulación con la implementación de cola que utiliza listas circulares" );
 		String seleccion = scan.nextLine();
 		//int seleccion = scan.nextInt();
 		for( int i = 0; i < CANTIDAD_COLAS; i++ ){
