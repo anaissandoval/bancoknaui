@@ -7,7 +7,7 @@ import bancoKnaui.*;
  * Clase que realiza pruebas sobre cualquier implementación de Cola
  * @author ale
  */
-public class ColaTest extends TestCase {
+public class TestCola_Arreglos extends TestCase {
 
 	// --------------------------------------------------
 	// Atributos
