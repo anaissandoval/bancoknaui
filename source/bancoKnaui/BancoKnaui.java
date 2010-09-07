@@ -3,6 +3,7 @@ package bancoKnaui;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Clase que representa al banco con 4 colas y un mÃ¡ximo de 10 clientes por cola.
@@ -44,10 +45,17 @@ public class BancoKnaui {
 	{
 		colas = new Cola[CANTIDAD_COLAS];
 		
-		// Descomente una de las lÃ­neas para elegir la implementaciÃ³n de Cola que desea utilizar. Deje la otra lÃ­nea comentada
-		for( int i = 0; i < CANTIDAD_COLAS; i++ )
-			colas[i] = new Cola_Arreglos<Cliente>();
-			//colas[i] = new Cola_ListaCircular<Cliente>();
+		Scanner scan = new Scanner( System.in );
+		System.out.print( "Presione '1' para realizar la simulación con la implementación de cola que utiliza arreglos.\n" +
+				"Presiones '2' para realizar la simulación con la implementación de cola que utiliza listas circulares" );
+		String seleccion = scan.nextLine();
+		//int seleccion = scan.nextInt();
+		for( int i = 0; i < CANTIDAD_COLAS; i++ ){
+			if( seleccion.trim().equals("1"))  colas[i] = new Cola_Arreglos<Cliente>();
+			else if( seleccion.trim().equals("2") )colas[i] = new Cola_ListaCircular<Cliente>();
+			else { System.out.println( "Número inválido." ); new BancoKnaui(); }
+		}
+		
 		generarListaClientes();
 		simularBanco();
 	}
@@ -70,7 +78,7 @@ public class BancoKnaui {
 		for( int i = 0; i < CLIENTES_A_GENERAR; i++ ){
 			int t1 = random.nextInt( 480 ) + 1;
 			int t2 = random.nextInt( 30 ) + 1;
-			listaClientes.add( new Cliente( t1, t2 ) );
+			listaClientes.add( new Cliente( i+1, t1, t2 ) );
 		}
 		
 		// Ordena los clientes por su hora de entrada
@@ -119,7 +127,7 @@ public class BancoKnaui {
 			if( ! cola.isEmpty() )
 			if( cola.peek().darHoraAtendido() == 0 ){
 				cola.peek().setHoraAtendido( hora );
-				System.out.println( hora + ":\n\tSe está atendiendo a un cliente en la cola " + (i+1) );
+				System.out.println( hora + ":\n\tSe está atendiendo al cliente " + cola.peek().darCodigo() + " en la cola " + (i+1) );
 			}
 		}
 	}
@@ -132,19 +140,22 @@ public class BancoKnaui {
 	{
 		for( int i = 0; i < colas.length; i++ ){
 			Cola<Cliente> cola = colas[i];
-			if( ! cola.isEmpty() )
-			if( cola.peek().darHoraSalida() == hora ){
-				Cliente saliendo = cola.dequeue();
-				sumaPermanencias += saliendo.darHoraSalida() - saliendo.darHoraEntrada();
-				System.out.println( hora + ":\n\tSe ha terminado de atender al cliente en la cola " + (i+1) + ".\n\tSu permanencia fue de " + (saliendo.darHoraSalida() - saliendo.darHoraEntrada()) );
-			}
+			if( ! cola.isEmpty() ){
+				if( cola.peek().darHoraSalida() == hora ){
+					Cliente saliendo = cola.dequeue();
+					sumaPermanencias += saliendo.darHoraSalida() - saliendo.darHoraEntrada();
+					System.out.println( hora + ":\n\tSe ha terminado de atender al cliente " + saliendo.darCodigo() + " en la cola " + (i+1) + ".\n\tSu permanencia fue de " + (saliendo.darHoraSalida() - saliendo.darHoraEntrada()) );
+				} else{}
+			} else{}
 		}
 		for( int i = 0; i < colas.length; i++ ){
 			Cola<Cliente> cola = colas[i];
-			if( ! cola.isEmpty() )
-			if( cola.peek().darHoraAtendido() == 0 ){
-				cola.peek().setHoraAtendido( hora );
-			System.out.println( hora + ":\n\tSe está atendiendo a un cliente en la cola " + (i+1) );}
+			if( ! cola.isEmpty() ){
+				if( cola.peek().darHoraAtendido() == 0 ){
+					cola.peek().setHoraAtendido( hora );
+					System.out.println( hora + ":\n\tSe está atendiendo al cliente " + cola.peek().darCodigo() + " en la cola " + (i+1) );
+				} else{}
+			} else{}
 		}
 	}
 	

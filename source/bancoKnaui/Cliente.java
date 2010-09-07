@@ -23,6 +23,11 @@ public class Cliente implements Comparable<Cliente>{
 	/** Hora a la que atienden al cliente en el banco. */
 	private int horaAtendido;
 	
+	/**
+	 * Número que identifica al cliente
+	 */
+	private int codigo;
+	
 	// --------------------------------------------------
 	// Constructor
 	// --------------------------------------------------
@@ -32,11 +37,12 @@ public class Cliente implements Comparable<Cliente>{
 	 * @param t2 Tiempo que le tomarÃ¡ al cliente hacer su mandado (en minutos).
 	 * pre: t1 debe ser un nÃºmero entre 1 y 480. t2 debe ser un nÃºmero entre 1 y 30.
 	 */
-	public Cliente( int t1, int t2 ){
+	public Cliente( int cod, int t1, int t2 ){
 		
 		assert t1 > 0 && t1 <= 480 : "La hora de entrada debe ser un nÃºmero entre 1 y 480.";
 		assert t2 > 0 && t2 <= 30 : "El tiempo de permanencia debe ser menor a 30 minutos.";
 		
+		codigo = cod;
 		horaEntrada = t1;
 		tiempoPermanencia = t2;
 		horaAtendido = 0;
@@ -96,5 +102,9 @@ public class Cliente implements Comparable<Cliente>{
 	public String toString()
 	{
 		return "\n\tHora de entrada: " + horaEntrada + "\n\tDuración de transacción: " + tiempoPermanencia;
+	}
+	
+	public int darCodigo(){
+		return codigo;
 	}
 }

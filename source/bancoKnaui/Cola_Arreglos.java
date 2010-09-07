@@ -48,7 +48,7 @@ public class Cola_Arreglos<E> extends AbstractCola<E> {
 		nuevos[ nuevos.length - 1 ] = elemento;
 		elementos = nuevos;
 	}
-
+	
 	public E peek() {
 		if( isEmpty() ) return null;
 		else
